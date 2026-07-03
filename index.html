@@ -588,6 +588,103 @@
     padding-top: 14px;
   }
 
+  /* POLICIES SECTION */
+  #policies { scroll-margin-top: 80px; }
+
+  /* BOOKING MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,2,20,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-box {
+    background: var(--purple-mid);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .modal-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+
+  .modal-box .modal-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .modal-field {
+    margin-bottom: 14px;
+  }
+
+  .modal-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--off-white);
+    margin-bottom: 6px;
+  }
+
+  .modal-field input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  .modal-field input::placeholder { color: var(--text-muted); }
+
+  .modal-field input:focus {
+    outline: none;
+    border-color: var(--neon-orange);
+  }
+
+  .modal-error {
+    font-size: 12px;
+    color: var(--neon-orange-bright);
+    margin: -6px 0 14px;
+    display: none;
+  }
+
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .modal-cancel {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    padding: 6px;
+  }
+
   /* FINAL CTA */
   .final-cta {
     background: radial-gradient(ellipse at center, #3d1269 0%, var(--purple) 70%);
@@ -709,7 +806,7 @@
   </div>
 
   <div class="cta-group">
-    <button onclick="openPayment()" class="btn-primary">🔒 Book My Spot for ₹199</button>
+    <button onclick="openBookingModal()" class="btn-primary">🔒 Book My Spot for ₹199</button>
     <a href="https://wa.me/919414725555?text=Hi!%20I%20am%20interested%20in%20the%20Saffroponic%20Course" class="btn-whatsapp" target="_blank">
       <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.104.548 4.08 1.504 5.8L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.566-.487-5.055-1.334l-.362-.214-3.759.98 1.003-3.648-.237-.376A9.946 9.946 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Have a question? Chat on WhatsApp
@@ -906,7 +1003,7 @@
     </ul>
 
     <div class="cta-group">
-      <button onclick="openPayment()" class="btn-primary">🔒 Book My Spot for ₹199</button>
+      <button onclick="openBookingModal()" class="btn-primary">🔒 Book My Spot for ₹199</button>
       <a href="https://wa.me/919414725555?text=Hi!%20I%20am%20interested%20in%20the%20Saffroponic%20Course" class="btn-whatsapp" target="_blank">
         <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.104.548 4.08 1.504 5.8L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.566-.487-5.055-1.334l-.362-.214-3.759.98 1.003-3.648-.237-.376A9.946 9.946 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Have a question? Chat on WhatsApp
@@ -1114,7 +1211,7 @@
     <h2>Ready to Grow <span>Saffron</span> in Your Fridge?</h2>
     <p>Join 300+ students across India who've already started. Two batches this July — once they fill, they're gone.</p>
     <div class="cta-group">
-      <button onclick="openPayment()" class="btn-primary">🔒 Book My Spot for ₹199</button>
+      <button onclick="openBookingModal()" class="btn-primary">🔒 Book My Spot for ₹199</button>
       <a href="https://wa.me/919414725555?text=Hi!%20I%20am%20interested%20in%20the%20Saffroponic%20Course" class="btn-whatsapp" target="_blank">
         <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.104.548 4.08 1.504 5.8L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.566-.487-5.055-1.334l-.362-.214-3.759.98 1.003-3.648-.237-.376A9.946 9.946 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Chat on WhatsApp before booking
@@ -1124,10 +1221,69 @@
   </div>
 </div>
 
+<!-- BOOKING MODAL: collects Name/Email/Phone before opening Razorpay checkout -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <h3>Almost there 🌱</h3>
+    <p class="modal-sub">Enter your details to proceed to payment.</p>
+
+    <div class="modal-field">
+      <label for="buyerName">Full Name</label>
+      <input type="text" id="buyerName" placeholder="e.g. Priya Sharma">
+    </div>
+    <div class="modal-field">
+      <label for="buyerEmail">Email</label>
+      <input type="email" id="buyerEmail" placeholder="e.g. priya@example.com">
+    </div>
+    <div class="modal-field">
+      <label for="buyerPhone">Phone Number</label>
+      <input type="tel" id="buyerPhone" placeholder="e.g. 9876543210">
+    </div>
+    <div class="modal-error" id="modalError">Please fill in all fields with a valid email and 10-digit phone number.</div>
+
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="submitBookingDetails()">Proceed to Pay ₹199</button>
+      <button class="modal-cancel" onclick="closeBookingModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- POLICIES -->
+<section id="policies">
+  <div class="section-label">Good to Know</div>
+  <h2 class="section-title">Policies</h2>
+
+  <div class="faq-list">
+
+    <details id="refund-policy">
+      <summary>Refund & Cancellation Policy</summary>
+      <div class="faq-answer">All purchases made through The Saffroponic are for digital course content and are final. Due to the instant and irrevocable access provided upon payment, we do not offer refunds or cancellations once a purchase is completed. Please review the course details carefully before making a purchase. For any concerns or issues with your order, contact us at Saffroponic@gmail.com.</div>
+    </details>
+
+    <details id="terms">
+      <summary>Terms & Conditions</summary>
+      <div class="faq-answer">By purchasing a course from The Saffroponic, you agree to the following: (1) All content is for personal, non-commercial use only and may not be redistributed, resold, or shared. (2) Course access is granted upon successful payment confirmation. (3) The Saffroponic reserves the right to update course content, pricing, or these terms at any time without prior notice. (4) All payments are processed securely through Razorpay. (5) For any queries, reach us at Saffroponic@gmail.com.</div>
+    </details>
+
+    <details id="privacy">
+      <summary>Privacy Policy</summary>
+      <div class="faq-answer">The Saffroponic collects your name, email address, and phone number solely for the purpose of processing your course purchase, providing access, and contacting you regarding your order. We do not sell, rent, or share your personal information with third parties, except as required to process payments (via Razorpay) or comply with the law. Your payment details are handled directly by Razorpay and are not stored on our servers. For questions about your data, contact Saffroponic@gmail.com.</div>
+    </details>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Saffroponic &nbsp;·&nbsp; <a href="https://instagram.com/saffroponic" target="_blank">@saffroponic</a> &nbsp;·&nbsp; All rights reserved</p>
   <p style="margin-top: 6px; font-size: 11px; color: var(--text-muted);">Secure payments powered by Razorpay</p>
+  <p style="margin-top: 10px; font-size: 11px;">
+    <a href="#refund-policy">Refund Policy</a> &nbsp;·&nbsp;
+    <a href="#terms">Terms & Conditions</a> &nbsp;·&nbsp;
+    <a href="#privacy">Privacy Policy</a>
+  </p>
 </footer>
 
 <!-- ============================================================
@@ -1141,30 +1297,66 @@
 <!-- RAZORPAY PAYMENT GATEWAY -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-  function openPayment() {
+  // STEP 1: Paste the Web App URL of your Google Apps Script here.
+  // This is what saves Name/Email/Phone to your Google Sheet.
+  // Leave it blank and the site still works — it just won't log to the sheet.
+  var GOOGLE_SHEET_WEBHOOK_URL = "";
+
+  // ---- Modal open/close ----
+  function openBookingModal() {
+    document.getElementById("modalError").style.display = "none";
+    document.getElementById("bookingModal").classList.add("active");
+  }
+
+  function closeBookingModal() {
+    document.getElementById("bookingModal").classList.remove("active");
+  }
+
+  // ---- Validate details, then hand off to Razorpay ----
+  function submitBookingDetails() {
+    var name = document.getElementById("buyerName").value.trim();
+    var email = document.getElementById("buyerEmail").value.trim();
+    var phone = document.getElementById("buyerPhone").value.trim();
+
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var phoneOk = /^[6-9]\d{9}$/.test(phone);
+
+    if (!name || !emailOk || !phoneOk) {
+      document.getElementById("modalError").style.display = "block";
+      return;
+    }
+
+    closeBookingModal();
+    openPayment(name, email, phone);
+  }
+
+  // ---- Razorpay Checkout ----
+  function openPayment(name, email, phone) {
     var options = {
-      // ✅ STEP 1: Replace the key below with your Razorpay Key ID
+      // STEP 2: Replace the key below with your Razorpay Key ID
       // Get it from: razorpay.com → Settings → API Keys
       "key": "rzp_test_REPLACE_WITH_YOUR_KEY",
 
-      // ✅ STEP 2: Amount is in PAISE. ₹199 = 19900 paise. Do not change unless price changes.
+      // Amount is in PAISE. ₹199 = 19900 paise. Do not change unless price changes.
       "amount": "19900",
 
       "currency": "INR",
       "name": "Saffroponic",
       "description": "Live Training — ₹199 (July 2026 Batch)",
 
-      // ✅ STEP 3: Replace with your own logo image name if you upload one to GitHub
+      // STEP 3: Replace with your own logo image name if you upload one to GitHub
       // "image": "logo.png",
 
       "handler": function (response) {
-        // This runs after successful payment
+        // Runs after successful payment — log the buyer's details + payment ID to Google Sheets
+        logToGoogleSheet(name, email, phone, response.razorpay_payment_id);
+
         alert("🎉 Payment Successful! Your booking is confirmed.\nPayment ID: " + response.razorpay_payment_id + "\nWe will contact you on WhatsApp with session details.");
       },
       "prefill": {
-        "name": "",
-        "email": "",
-        "contact": ""
+        "name": name,
+        "email": email,
+        "contact": phone
       },
       "notes": {
         "course": "Saffroponic Live Training July 2026"
@@ -1186,6 +1378,29 @@
     });
 
     rzp.open();
+  }
+
+  // ---- Send buyer details to Google Sheet via Apps Script Web App ----
+  function logToGoogleSheet(name, email, phone, paymentId) {
+    if (!GOOGLE_SHEET_WEBHOOK_URL) {
+      console.warn("GOOGLE_SHEET_WEBHOOK_URL is not set — skipping sheet log.");
+      return;
+    }
+
+    fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        phone: phone,
+        paymentId: paymentId,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(function (err) {
+      console.error("Could not log to Google Sheet:", err);
+    });
   }
 </script>
 
