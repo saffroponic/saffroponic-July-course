@@ -368,18 +368,18 @@
   /* CURRICULUM */
   .curriculum-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 
   .curriculum-item {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: 12px;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 14px;
     transition: border-color 0.2s, background 0.2s;
   }
 
@@ -390,26 +390,55 @@
 
   .curriculum-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     color: var(--neon-orange);
-    min-width: 32px;
+    min-width: 24px;
     line-height: 1;
     padding-top: 2px;
   }
 
   .curriculum-text {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--white);
-    line-height: 1.4;
+    line-height: 1.3;
   }
 
   .curriculum-text span {
     display: block;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 400;
     color: var(--text-muted);
     margin-top: 3px;
+  }
+
+  details.curriculum-accordion {
+    background: transparent;
+    border: none;
+  }
+
+  details.curriculum-accordion summary {
+    padding: 14px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--neon-orange);
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  details.curriculum-accordion summary::after {
+    content: '▼';
+    font-size: 12px;
+    margin-left: 8px;
+    transition: transform 0.2s;
+  }
+
+  details.curriculum-accordion[open] summary::after {
+    transform: rotate(180deg);
   }
 
   /* SOCIAL PROOF */
@@ -672,7 +701,8 @@
   }
 
   /* RESPONSIVE */
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
+    .curriculum-grid { grid-template-columns: 1fr; }
     .cred-inner { grid-template-columns: 1fr; gap: 20px; }
     .proof-grid { grid-template-columns: 1fr; }
   }
@@ -722,7 +752,6 @@
     <p class="seats-note">Limited seats per batch — register before they fill</p>
   </div>
 
-  <!-- IMAGE PLACEHOLDER -->
   <!-- REEL VIDEO -->
   <div class="hero-image" style="aspect-ratio: 9/16; max-width: 320px; height: auto;">
     <video 
@@ -766,74 +795,82 @@
   <div class="section-label">What You'll Learn</div>
   <h2 class="section-title">Complete Saffron Farming Curriculum</h2>
 
+  <!-- Top 4 Modules Visible -->
   <div class="curriculum-grid">
     <div class="curriculum-item">
       <div class="curriculum-num">01</div>
       <div class="curriculum-text">Know Your Kesar
-        <span>Understand the crop — varieties, quality grades, and what makes Kashmiri saffron the world's finest</span>
+        <span>Grades &amp; Kashmiri saffron quality</span>
       </div>
     </div>
     <div class="curriculum-item">
       <div class="curriculum-num">02</div>
-      <div class="curriculum-text">Demand &amp; Supply of Kesar in India
-        <span>Market landscape, pricing, where buyers are, and why the gap between demand and supply is your opportunity</span>
+      <div class="curriculum-text">Demand &amp; Market Gap
+        <span>Indian market &amp; buyer opportunities</span>
       </div>
     </div>
     <div class="curriculum-item">
       <div class="curriculum-num">03</div>
-      <div class="curriculum-text">Seed Purchase &amp; Preparation
-        <span>How to source authentic Kashmiri corms, what to check, how to prepare them before planting</span>
+      <div class="curriculum-text">Seed Purchase
+        <span>Sourcing &amp; preparing corms</span>
       </div>
     </div>
     <div class="curriculum-item">
       <div class="curriculum-num">04</div>
-      <div class="curriculum-text">Commissioning Cold House &amp; Fridge Modification
-        <span>Step-by-step fridge setup using the Saffroponic kit — and how to scale to a cold house for large operations</span>
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-num">05</div>
-      <div class="curriculum-text">Climate Controls
-        <span>Temperature, humidity, and light cycles — the exact parameters that trigger saffron flowering</span>
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-num">06</div>
-      <div class="curriculum-text">Harvesting &amp; Storing Saffron
-        <span>When and how to harvest stigmas, drying methods, and storage for maximum shelf life and value</span>
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-num">07</div>
-      <div class="curriculum-text">Seed Multiplication
-        <span>How saffron corms multiply season after season — turning your initial investment into a growing asset</span>
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-num">08</div>
-      <div class="curriculum-text">Cost, Profitability, Breakeven &amp; ROI Calculation
-        <span>Real numbers — what you spend, what you earn, and when you break even at different scales</span>
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-num">09</div>
-      <div class="curriculum-text">Large Scale Farming
-        <span>How to move from a single fridge to a full cold-house operation when you're ready to invest big</span>
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-num">10</div>
-      <div class="curriculum-text">Marketing &amp; Selling Your Saffron
-        <span>Who buys, how to price, how to package, and where to sell — online and offline channels covered</span>
-      </div>
-    </div>
-    <div class="curriculum-item">
-      <div class="curriculum-num">11</div>
-      <div class="curriculum-text">Saffroponic Kit Demo
-        <span>Complete DIY Saffroponic kit Demo — see exactly what you need and how it all fits together</span>
+      <div class="curriculum-text">Fridge Setup &amp; Kit
+        <span>Step-by-step modification guide</span>
       </div>
     </div>
   </div>
+
+  <!-- Remaining 7 Modules Collapsible -->
+  <details class="curriculum-accordion" style="margin-top: 12px;">
+    <summary>View Full Curriculum (Modules 5–11)</summary>
+    <div class="curriculum-grid" style="margin-top: 12px;">
+      <div class="curriculum-item">
+        <div class="curriculum-num">05</div>
+        <div class="curriculum-text">Climate Controls
+          <span>Temp, humidity &amp; light cycles</span>
+        </div>
+      </div>
+      <div class="curriculum-item">
+        <div class="curriculum-num">06</div>
+        <div class="curriculum-text">Harvesting &amp; Storage
+          <span>Drying methods &amp; shelf life</span>
+        </div>
+      </div>
+      <div class="curriculum-item">
+        <div class="curriculum-num">07</div>
+        <div class="curriculum-text">Seed Multiplication
+          <span>Growing corms season after season</span>
+        </div>
+      </div>
+      <div class="curriculum-item">
+        <div class="curriculum-num">08</div>
+        <div class="curriculum-text">ROI &amp; Breakeven
+          <span>Real costs &amp; profit calculations</span>
+        </div>
+      </div>
+      <div class="curriculum-item">
+        <div class="curriculum-num">09</div>
+        <div class="curriculum-text">Large Scale Farming
+          <span>Scaling to a full cold house</span>
+        </div>
+      </div>
+      <div class="curriculum-item">
+        <div class="curriculum-num">10</div>
+        <div class="curriculum-text">Marketing &amp; Sales
+          <span>Pricing &amp; selling channels</span>
+        </div>
+      </div>
+      <div class="curriculum-item" style="grid-column: span 1;">
+        <div class="curriculum-num">11</div>
+        <div class="curriculum-text">Saffroponic Kit Demo
+          <span>Complete DIY kit walkthrough</span>
+        </div>
+      </div>
+    </div>
+  </details>
 
   <div style="margin-top: 24px; padding: 16px 20px; background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.25); border-radius: var(--radius); font-size: 14px; color: var(--neon-yellow); display: flex; align-items: center; gap: 10px;">
     📄 <strong>Full training PDF included</strong> — free for all attendees
@@ -992,7 +1029,7 @@
       </div>
       <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;">
         <div style="font-size:11px; color:var(--neon-yellow); font-weight:700; margin-bottom:4px;">↑↑↑↑↑</div>
-        <div style="width:100%; background:var(--neon-yellow); border-radius:4px 4px 0 0; height:100%; opacity:0.85;"></div>
+        <div style="width:100%; background:var(--neon-yellow); border-radius:4px 4px 0 0; height:100%; opacity:0.85%;"></div>
         <div style="font-size:10px; color:var(--text-muted); margin-top:6px; text-align:center;">Cycle 5</div>
       </div>
       <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; position:relative;">
