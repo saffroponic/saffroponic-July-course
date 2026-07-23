@@ -1215,21 +1215,26 @@ src="https://www.facebook.com/tr?id=2194085144496909&ev=PageView&noscript=1"
     <a href="#privacy">Privacy Policy</a>
   </p>
 </footer>
-<!-- Button Click Tracking for Razorpay -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var allLinks = document.querySelectorAll('a');
-      
-      allLinks.forEach(function(link) {
-        if (link.href.includes('pages.razorpay.com/saffroponicmasterclass')) {
-          link.addEventListener('click', function() {
-            if (typeof fbq === 'function') {
-              fbq('track', 'InitiateCheckout');
-            }
-          });
-        }
-      });
+ <!-- Button Click Tracking for Razorpay with Value Tracking -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var allLinks = document.querySelectorAll('a');
+    
+    allLinks.forEach(function(link) {
+      if (link.href.includes('pages.razorpay.com/saffroponicmasterclass')) {
+        link.addEventListener('click', function() {
+          if (typeof fbq === 'function') {
+            // Track conversion with ticket value
+            fbq('track', 'InitiateCheckout', {
+              value: 199.00,
+              currency: 'INR',
+              content_name: 'Saffroponic July Masterclass'
+            });
+          }
+        });
+      }
     });
-  </script>
+  });
+</script>
 </body>
 </html>
