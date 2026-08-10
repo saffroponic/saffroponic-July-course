@@ -135,7 +135,7 @@
 
     <!-- Dynamic Date Display -->
     <div class="date-box">
-      <strong>Date and time:</strong> <span id="chosen-date">Loading...</span>
+      <strong>Schedule sent to Email:</strong> <span id="chosen-date">Loading...</span>
     </div>
 
     <!-- Message Body -->
@@ -161,7 +161,7 @@
       // Decode and clean up any URL formatting
       document.getElementById('chosen-date').innerText = decodeURIComponent(dateParam).replace(/\+/g, ' ');
     } else {
-      document.getElementById('chosen-date').innerText = "As selected during checkout (Sent to your email)";
+      document.getElementById('chosen-date').innerText = "Please check Email";
     }
   </script>
   
