@@ -131,7 +131,7 @@
     <img src="4.png" alt="Saffroponic Logo" class="logo">
 
     <!-- 1. Confirmation Title -->
-    <h1>Thank you! Your spot is confirmed</h1>
+    <h1>Thank you! Your spot is confirmed!</h1>
 
     <!-- Dynamic Date Display -->
     <div class="date-box">
@@ -140,7 +140,7 @@
 
     <!-- Message Body -->
     <p class="info-text">
-      The details of your chosen class have been sent to your email. We will send a reminder 1 day before your chosen date too!
+      Masterclass details have been sent to your email. We will send a whatsapp reminder 1 day before your chosen date too!
     </p>
 
     <!-- 2. Direct WhatsApp Link -->
@@ -152,17 +152,18 @@
     </a>
   </div>
 
-  <!-- Script to Extract Date Parameter from Razorpay Redirect -->
+ <!-- Script to Extract and Clean Date Parameter from Razorpay Redirect -->
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const dateParam = urlParams.get('date');
     
-    if (dateParam) {
-      document.getElementById('chosen-date').innerText = decodeURIComponent(dateParam);
+    if (dateParam && dateParam !== '{notes.select_batch_date}' && dateParam !== '{note_select_batch_date}') {
+      // Decode and clean up any URL formatting
+      document.getElementById('chosen-date').innerText = decodeURIComponent(dateParam).replace(/\+/g, ' ');
     } else {
-      document.getElementById('chosen-date').innerText = "As selected during checkout";
+      document.getElementById('chosen-date').innerText = "As selected during checkout (Sent to your email)";
     }
   </script>
-
+  
 </body>
 </html>
