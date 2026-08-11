@@ -17,12 +17,6 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '2194085144496909');
     fbq('track', 'PageView');
-    
-    // Purchase Event Trigger for Meta Ads Conversion Optimization
-    fbq('track', 'Purchase', {
-      value: 199.00,
-      currency: 'INR'
-    });
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
@@ -152,35 +146,17 @@
     </a>
   </div>
 
- <!-- Script to Clean Date Parameter & Trigger Meta Deduplicated Purchase Event -->
-<script>
-  // 1. Read URL Parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const dateParam = urlParams.get('date');
-  const paymentId = urlParams.get('razorpay_payment_id');
+  <!-- Script to Extract and Clean Date Parameter -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const dateParam = urlParams.get('date');
 
-  // 2. Display Chosen Date on Page
-  if (dateParam && dateParam !== '{notes.select_batch_date}' && dateParam !== '{note_select_batch_date}') {
-    document.getElementById('chosen-date').innerText = decodeURIComponent(dateParam).replace(/\+/g, ' ');
-  } else {
-    document.getElementById('chosen-date').innerText = "Please check Email";
-  }
-
-  // 3. Fire Deduplicated Meta Purchase Event
-  if (typeof fbq === 'function') {
-    if (paymentId) {
-      fbq('track', 'Purchase', {
-        value: 199.00,
-        currency: 'INR'
-      }, { eventID: paymentId });
+    if (dateParam && dateParam !== '{notes.select_batch_date}' && dateParam !== '{note_select_batch_date}') {
+      document.getElementById('chosen-date').innerText = decodeURIComponent(dateParam).replace(/\+/g, ' ');
     } else {
-      fbq('track', 'Purchase', {
-        value: 199.00,
-        currency: 'INR'
-      });
+      document.getElementById('chosen-date').innerText = "Please check Email";
     }
-  }
-</script>
+  </script>
   
 </body>
 </html>
