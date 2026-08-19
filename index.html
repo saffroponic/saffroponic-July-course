@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <script>
+  function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+  }
+
+  // Store IDs in variables when the page loads
+  window.meta_fbp = getCookie('_fbp');
+  window.meta_fbc = getCookie('_fbc');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saffroponic — Grow Kashmiri Saffron in a Fridge | Live Training ₹199</title>
