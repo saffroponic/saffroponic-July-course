@@ -1232,21 +1232,26 @@ src="https://www.facebook.com/tr?id=2194085144496909&ev=PageView&noscript=1"
     const buttonIds = ['book-btn-nav', 'book-btn-1', 'book-btn-2', 'book-btn-3'];
     const baseUrl = 'https://pages.razorpay.com/saffroponicmasterclass';
 
-    // Construct final URL with Meta parameters
-    const fbp = window.meta_fbp || '';
-    const fbc = window.meta_fbc || '';
-    
-    const targetUrl = new URL(baseUrl);
-    if (fbp) targetUrl.searchParams.set('notes[fbp]', fbp);
-    if (fbc) targetUrl.searchParams.set('notes[fbc]', fbc);
+    // Helper function to read cookies safely
+    function getCookie(name) {
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return '';
+    }
 
-    const finalHref = targetUrl.toString();
+    // Capture cookies or use dummy fallback during organic tests
+    let fbp = window.meta_fbp || getCookie('_fbp') || 'test_fbp_12345';
+    let fbc = window.meta_fbc || getCookie('_fbc') || 'fb.1.123456789.test_fbc_12345';
 
-    // Update the actual href of every button when page loads
+    // Build Razorpay URL with dynamic notes parameters
+    let finalUrl = baseUrl + '?notes[fbp]=' + encodeURIComponent(fbp) + '&notes[fbc]=' + encodeURIComponent(fbc);
+
+    // Update all CTA buttons on page load
     buttonIds.forEach(function(id) {
       const btn = document.getElementById(id);
       if (btn) {
-        btn.setAttribute('href', finalHref);
+        btn.setAttribute('href', finalUrl);
       }
     });
   })();
