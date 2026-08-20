@@ -1228,7 +1228,7 @@ src="https://www.facebook.com/tr?id=2194085144496909&ev=PageView&noscript=1"
 </footer>
 
 <script>
-  (function() {
+  document.addEventListener("DOMContentLoaded", function() {
     const buttonIds = ['book-btn-nav', 'book-btn-1', 'book-btn-2', 'book-btn-3'];
     const baseUrl = 'https://pages.razorpay.com/saffroponicmasterclass';
 
@@ -1239,19 +1239,32 @@ src="https://www.facebook.com/tr?id=2194085144496909&ev=PageView&noscript=1"
       return '';
     }
 
-    let fbp = window.meta_fbp || getCookie('_fbp') || 'test_fbp_12345';
-    let fbc = window.meta_fbc || getCookie('_fbc') || 'fb.1.123456789.test_fbc_12345';
+    // Delay slightly to ensure Meta Pixel has set cookies
+    setTimeout(function() {
+      let fbp = getCookie('_fbp');
+      let fbc = getCookie('_fbc');
 
-    // Updated query string directly targeting the form field labels
-    let finalUrl = baseUrl + '?fbp=' + encodeURIComponent(fbp) + '&fbc=' + encodeURIComponent(fbc);
+      let params = [];
+      if (fbp) params.push('fbp=' + encodeURIComponent(fbp));
+      if (fbc) params.push('fbc=' + encodeURIComponent(fbc));
 
-    buttonIds.forEach(function(id) {
-      const btn = document.getElementById(id);
-      if (btn) {
-        btn.setAttribute('href', finalUrl);
+      if (params.length > 0) {
+        let finalUrl = baseUrl + '?' + params.join('&');
+        buttonIds.forEach(function(id) {
+          const btn = document.getElementById(id);
+          if (btn) {
+            btn.setAttribute('href', finalUrl);
+            // Optional: Track InitiateCheckout event on click
+            btn.addEventListener('click', function() {
+              if (typeof fbq === 'function') {
+                fbq('track', 'InitiateCheckout');
+              }
+            });
+          }
+        });
       }
-    });
-  })();
+    }, 500);
+  });
 </script>
 
 </body>
