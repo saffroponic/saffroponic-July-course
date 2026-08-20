@@ -1228,7 +1228,7 @@ src="https://www.facebook.com/tr?id=2194085144496909&ev=PageView&noscript=1"
 </footer>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  (function() {
     const buttonIds = ['book-btn-nav', 'book-btn-1', 'book-btn-2', 'book-btn-3'];
     const baseUrl = 'https://pages.razorpay.com/saffroponicmasterclass';
 
@@ -1239,32 +1239,53 @@ src="https://www.facebook.com/tr?id=2194085144496909&ev=PageView&noscript=1"
       return '';
     }
 
-    // Delay slightly to ensure Meta Pixel has set cookies
-    setTimeout(function() {
+    function getTrackingParams() {
       let fbp = getCookie('_fbp');
       let fbc = getCookie('_fbc');
+
+      // Fallback: Parse fbclid directly from URL if _fbc cookie isn't ready
+      if (!fbc) {
+        let urlParams = new URLSearchParams(window.location.search);
+        let fbclid = urlParams.get('fbclid');
+        if (fbclid) {
+          fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+        }
+      }
 
       let params = [];
       if (fbp) params.push('fbp=' + encodeURIComponent(fbp));
       if (fbc) params.push('fbc=' + encodeURIComponent(fbc));
 
-      if (params.length > 0) {
-        let finalUrl = baseUrl + '?' + params.join('&');
+      return params.length > 0 ? '?' + params.join('&') : '';
+    }
+
+    function applyLinks() {
+      let queryString = getTrackingParams();
+      if (queryString) {
         buttonIds.forEach(function(id) {
           const btn = document.getElementById(id);
           if (btn) {
-            btn.setAttribute('href', finalUrl);
-            // Optional: Track InitiateCheckout event on click
-            btn.addEventListener('click', function() {
-              if (typeof fbq === 'function') {
-                fbq('track', 'InitiateCheckout');
-              }
-            });
+            btn.setAttribute('href', baseUrl + queryString);
           }
         });
       }
-    }, 500);
-  });
+    }
+
+    // Run automatically on load, after delays, and on hover/click
+    document.addEventListener("DOMContentLoaded", function() {
+      applyLinks();
+      setTimeout(applyLinks, 800);
+      setTimeout(applyLinks, 2000);
+
+      buttonIds.forEach(function(id) {
+        const btn = document.getElementById(id);
+        if (btn) {
+          btn.addEventListener('mouseenter', applyLinks);
+          btn.addEventListener('click', applyLinks);
+        }
+      });
+    });
+  })();
 </script>
 
 </body>
